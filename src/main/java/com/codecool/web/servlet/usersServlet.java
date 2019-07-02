@@ -26,14 +26,7 @@ public class usersServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
         String tweet = (String) req.getParameter("tweet");
-        String date = TweetService.getTweetTime();
-        System.out.println(date);
 
-        User user = new User(name, tweet, date);
-        TweetService ts = TweetService.getInstance();
-        ts.finalAdd(user, tweet);
-
-        req.setAttribute("users", user);
         req.getRequestDispatcher("tweetcool.jsp").forward(req, resp);
     }
 }

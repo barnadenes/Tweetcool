@@ -12,7 +12,7 @@ body {
     position: absolute;
     height: 100%;
     width: 100%;
-    background: url('/img/index.jpg');
+    background: url(img/index.jpg);
     background-repeat: no-repeat;
     background-size: auto;
   }
@@ -43,7 +43,7 @@ body {
 
 
 #tweet-away-background {
-    background: url(/img/tweet-away.png);
+    background: url(img/tweet-away.png);
     position: absolute;
     height: 100%;
     width: 100%;
@@ -52,7 +52,7 @@ body {
 }
 
 #tweet-view-background {
-    background: url(/img/header.png);
+    background: url(img/header.png);
     position: absolute;
     height: 100%;
     width: 100%;
@@ -65,13 +65,15 @@ body {
     text-align: initial;
 }
 
-h2  {
+h2, button  {
     font-family: 'Press Start 2P', cursive;
     cursor: pointer;
     color: rgb(51, 51, 51);
     font-size: 1.5vw;
     text-shadow: 2px 2px black;
     text-align: left;
+    border: hidden;
+    background: transparent;
 }
 
 .header-info {
