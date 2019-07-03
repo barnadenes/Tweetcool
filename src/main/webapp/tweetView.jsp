@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,13 +17,13 @@
                 <h2><button>Logout</button></h2>
             </form>
             <div class="header-info second">
-                <a>Isloth</a>
+                <a>${sessionScope.user.name}</a>
             </div>
             <div class="header-info third">
-                <a href="tweetAway.html">Write Cool</a>
+                <a href="tweetAway.jsp">Write Cool</a>
             </div>
             <div class="header-info fourth">
-                <a href="tweetView.html">View Cool</a>
+                <a href="tweetView.jsp">View Cool</a>
             </div>
             <div id="center-box-middle">
                 <div id="box-background-container">

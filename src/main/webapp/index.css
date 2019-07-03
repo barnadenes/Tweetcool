@@ -252,3 +252,7 @@ textarea {
     padding: 4px;
     background: white;
 }
+
+form {
+    margin: 0;
+}

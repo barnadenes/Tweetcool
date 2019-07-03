@@ -5,7 +5,7 @@ import java.util.List;
 
 public final class User {
     private final String name;
-    private final List<String> tweetList;
+    private final List<Tweet> tweetList;
 
     public User(String name) {
         this.name = name;
@@ -16,7 +16,7 @@ public final class User {
         return name;
     }
 
-    public List<String> getTweetList() {
+    public List<Tweet> getTweetList() {
         return tweetList;
     }
 

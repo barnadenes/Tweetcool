@@ -1,6 +1,7 @@
 package com.codecool.web.service;
 
 import com.codecool.web.exceptions.UserNotFoundException;
+import com.codecool.web.model.Tweet;
 import com.codecool.web.model.User;
 
 import java.util.Date;
@@ -36,9 +37,10 @@ public final class TweetService {
     }
 
     // adds tweet to user.
-    public void updateUser(User user, String tweet) {
+    public void addTweet(User user, Tweet tweet) {
         user.getTweetList().add(tweet);
     }
+
 
     // time getter;
     public String getTweetTime() {

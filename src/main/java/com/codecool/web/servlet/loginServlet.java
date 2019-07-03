@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -20,16 +21,22 @@ public class loginServlet extends HttpServlet {
         TweetService ts = (TweetService) req.getServletContext().getAttribute(TweetService.class.getName());
         List<User> users = ts.getUsers();
 
-        for (User user : users) {
-            if(!user.getName().equals(userName) || users.isEmpty()) {
-                User newUser = new User(userName);
-                ts.addUser(newUser);
-                req.setAttribute("user", newUser);
-            }
-            else {
-                req.setAttribute("user", user);
-            }
+        HttpSession oldSession = req.getSession(false);
+        if(oldSession != null) {
+            oldSession.invalidate();
         }
-        req.getRequestDispatcher("tweetAway.html").forward(req, resp);
+
+        User user = new User(userName);
+        HttpSession newSession = req.getSession(true);
+
+        if(users.contains(user)) {
+            newSession.setAttribute("user", user);
+        }
+        else {
+            users.add(user);
+            newSession.setAttribute("user", user);
+        }
+
+        req.getRequestDispatcher("tweetAway.jsp").forward(req, resp);
     }
 }
