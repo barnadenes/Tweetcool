@@ -26,7 +26,7 @@
                 <a href="tweetView.jsp">View Cool</a>
             </div>
             <form method="POST" action="addTweet">
-                <textarea placeholder="400 max char" maxlength="400" name="t-area" id="t-area" cols="166" rows="12" required></textarea>
+                <textarea name="textarea" placeholder="400 max char" maxlength="400" name="t-area" id="t-area" cols="166" rows="12" required></textarea>
                 <button id="tc-submit">Submit</button>
             </form>    
         </div>

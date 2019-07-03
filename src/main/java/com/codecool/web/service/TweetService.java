@@ -1,11 +1,9 @@
 package com.codecool.web.service;
 
-import com.codecool.web.exceptions.UserNotFoundException;
 import com.codecool.web.model.Tweet;
 import com.codecool.web.model.User;
 
 import java.util.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,8 +41,8 @@ public final class TweetService {
 
 
     // time getter;
-    public String getTweetTime() {
-        return new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+    public Date getTweetTime() {
+        return new Date();
     }
 
 }
