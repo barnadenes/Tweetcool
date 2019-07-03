@@ -67,14 +67,14 @@
                 </div>
                 <div class="tweet-list-container">
                     <div class="inner-tl-container">
-                        <p>Name</p>
+                        <p>${sessionScope.user.name}</p>
                         <p>Date</p>
                     </div>
                     <p class="p-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi quod corporis ducimus nemo maiores? 
                                    Consequatur nostrum facilis repellat explicabo voluptatem pariatur quia ipsum tempore ea
                     </p>
                     <div class="inner-tl-container">
-                            <p>Name</p>
+                            <p>${sessionScope.user.name}</p>
                             <p>Date</p>
                     </div>
                         <p class="p-text">Lorem ipsum 

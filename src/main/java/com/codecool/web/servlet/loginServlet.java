@@ -19,7 +19,6 @@ public class loginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userName = req.getParameter("name");
         TweetService ts = (TweetService) req.getServletContext().getAttribute(TweetService.class.getName());
-        List<User> users = ts.getUsers();
 
         HttpSession oldSession = req.getSession(false);
         if(oldSession != null) {
@@ -29,11 +28,11 @@ public class loginServlet extends HttpServlet {
         User user = new User(userName);
         HttpSession newSession = req.getSession(true);
 
-        if(users.contains(user)) {
+        if(ts.getUsers().contains(user)) {
             newSession.setAttribute("user", user);
         }
         else {
-            users.add(user);
+            ts.addUser(user);
             newSession.setAttribute("user", user);
         }
 
