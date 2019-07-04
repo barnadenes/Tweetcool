@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 
 @WebServlet("/addTweet")
 public class addTweetServlet extends HttpServlet {
@@ -17,9 +18,10 @@ public class addTweetServlet extends HttpServlet {
         TweetService ts = (TweetService) req.getServletContext().getAttribute(TweetService.class.getName());
         String tweet = req.getParameter("textarea");
         String user = String.valueOf(req.getSession().getAttribute("user"));
+        Date date = new Date();
 
         try {
-            ts.addTweet(user, tweet);
+            ts.addTweet(user, tweet, date);
         } catch (NullPointerException e) {
             e.printStackTrace();
         }

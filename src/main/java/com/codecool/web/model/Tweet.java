@@ -1,22 +1,23 @@
 package com.codecool.web.model;
 
-import java.time.LocalTime;
+import java.util.Date;
 
 public final class Tweet {
     private String tweet;
-    private final LocalTime date = LocalTime.now();;
+    private Date date;
     private String user;
 
     public Tweet() {
         this.tweet = "";
         this.user = "";
+        this.date = null;
     }
 
     public String getTweet() {
         return tweet;
     }
 
-    public LocalTime getDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -30,5 +31,9 @@ public final class Tweet {
 
     public void setTweet(String tweet) {
         this.tweet = tweet;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }
