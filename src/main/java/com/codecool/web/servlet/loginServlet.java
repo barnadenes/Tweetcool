@@ -1,6 +1,5 @@
 package com.codecool.web.servlet;
 
-import com.codecool.web.model.User;
 import com.codecool.web.service.TweetService;
 
 import javax.servlet.ServletException;
@@ -10,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet("/login")
 public class loginServlet extends HttpServlet {
@@ -25,15 +23,14 @@ public class loginServlet extends HttpServlet {
             oldSession.invalidate();
         }
 
-        User user = new User(userName);
         HttpSession newSession = req.getSession(true);
 
-        if(ts.getUsers().contains(user)) {
-            newSession.setAttribute("user", user);
+        if(ts.getUsers().contains(userName)) {
+            newSession.setAttribute("user", userName);
         }
         else {
-            ts.addUser(user);
-            newSession.setAttribute("user", user);
+            ts.addUser(userName);
+            newSession.setAttribute("user", userName);
         }
 
         req.getRequestDispatcher("tweetAway.jsp").forward(req, resp);

@@ -1,21 +1,34 @@
 package com.codecool.web.model;
 
-import java.util.Date;
+import java.time.LocalTime;
 
 public final class Tweet {
-    private final String text;
-    private final Date date;
+    private String tweet;
+    private final LocalTime date = LocalTime.now();;
+    private String user;
 
-    public Tweet(String text, Date date) {
-        this.text = text;
-        this.date = date;
+    public Tweet() {
+        this.tweet = "";
+        this.user = "";
     }
 
-    public String getText() {
-        return text;
+    public String getTweet() {
+        return tweet;
     }
 
-    public Date getDate() {
+    public LocalTime getDate() {
         return date;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user =  user;
+    }
+
+    public void setTweet(String tweet) {
+        this.tweet = tweet;
     }
 }

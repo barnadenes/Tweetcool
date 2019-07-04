@@ -1,48 +1,73 @@
 package com.codecool.web.service;
 
 import com.codecool.web.model.Tweet;
-import com.codecool.web.model.User;
 
-import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 public final class TweetService {
-    private final List<User> users = new ArrayList<>();
+    private final List<Tweet> tweets = new ArrayList<>();
 
-    // getter.
-    public List<User> getUsers() {
+    // get all user.
+    public List<String> getUsers() {
+        List<String> users = new ArrayList<>();
+        for (Tweet tweet : tweets) {
+            users.add(tweet.getUser());
+        }
         return users;
     }
 
     // new user to list.
-    public void addUser(User user) {
-        users.add(user);
+    public void addUser(String user) {
+        Tweet tweet = new Tweet();
+        tweet.setUser(user);
+        tweets.add(tweet);
     }
 
-    // get user by name.
-    public User getUser(User user) {
-          if(!users.isEmpty() || users != null) {
-              for (User user1 : users) {
-                  if (user1.getName().equals(user.getName())) {
-                      return user1;
-                  } else {
-                      return null;
-                  }
-              }
-          }
+    // get tweets by name.
+    public List<Tweet> nameFilter(String userName) {
+        List<Tweet> tbn = new ArrayList<>();
+
+        for (Tweet tweet : tweets) {
+            if(tweet.getUser().equals(userName)) {
+                tbn.add(tweet);
+            }
+        }
+        return tbn;
+    }
+
+    //get one tweet by username.
+    private Tweet getTweetByName(String userName) {
+        for (Tweet tweet : tweets) {
+            if(tweet.getUser().equals(userName) && tweet.getTweet().equals("")) {
+                return tweet;
+            }
+        }
         return null;
     }
 
-    // adds tweet to user.
-    public void addTweet(User user, Tweet tweet) {
-        user.getTweetList().add(tweet);
+    // checks if the user is registered
+    public Boolean isRegistered(String userName) {
+        for (Tweet tweet : tweets) {
+            if(tweet.getUser().equals(userName) && tweet.getTweet().equals("")) {
+                return true;
+            }
+        }
+        return false;
     }
 
-
-    // time getter;
-    public Date getTweetTime() {
-        return new Date();
+    // create new tweet.
+    public void addTweet(String userName, String tweet) throws NullPointerException{
+        if(isRegistered(userName)) {
+            for (String user : getUsers()) {
+                getTweetByName(user).setTweet(tweet);
+            }
+        }
+        else if(!isRegistered(userName)) {
+            Tweet newTweet = new Tweet();
+            newTweet.setUser(userName);
+            newTweet.setTweet(tweet);
+            tweets.add(newTweet);
+        }
     }
-
 }
