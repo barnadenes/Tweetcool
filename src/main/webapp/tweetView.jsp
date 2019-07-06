@@ -54,12 +54,8 @@
                             </select>
                         </div>
                         <div class="all-options">
-                            <select class="select-div">
-                                <option value="current user">From:</option>
-                                <option value=""></option>
-                                <option value=""></option>
-                                <option value=""></option>
-                            </select>   
+                            <label for="time"></label>
+                            <input style="font-size: 0.7vw;" class="select-div" type="date" name="time" id="time">
                         </div>
                         <button class="submit">Search</button>
                       </form>

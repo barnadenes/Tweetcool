@@ -156,6 +156,7 @@ textarea {
     text-shadow: 2px 2px black;
     background: transparent;
     border-style: none;
+    text-align: center;
 }
 
 #box-background {
@@ -214,6 +215,7 @@ textarea {
     font-size: 15px;
     margin-left: 5%;
     cursor: pointer;
+    text-align: center;
 }
 
 .tweet-list-container {

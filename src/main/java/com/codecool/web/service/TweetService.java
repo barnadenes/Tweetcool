@@ -11,6 +11,7 @@ import java.util.List;
 public final class TweetService {
     private final List<Tweet> tweets = new ArrayList<>();
     private SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+    private List<Tweet> empty = new ArrayList<>();
 
     // get all user.
     public List<String> getUsers() {
@@ -65,6 +66,17 @@ public final class TweetService {
         }
     }
 
+    // get earliest time.
+    public Date getStartDate() {
+        Date old;
+
+        if(tweets.get(0).getDate() != null) {
+            old = tweets.stream().map(Tweet::getDate).min(Date::compareTo).get();
+            return old;
+        }
+        return null;
+    }
+
     // offset filter
     private List<Tweet> offsetFilter(int offset) {
         List<Tweet> offsetList = new ArrayList<>();
@@ -74,50 +86,61 @@ public final class TweetService {
             }
             return offsetList;
         }
-        return new ArrayList<>();
+        else if(offset > tweets.size()) {
+            return empty;
+        }
+        return empty;
     }
 
     // limit & offset filter
     public List<Tweet> limitFilter(int limit, int offset)  {
         List<Tweet> limitedList = new ArrayList<>();
-        if(!offsetFilter(offset).isEmpty()) {
+        List<Tweet> offFilter = offsetFilter(offset);
+
+        if(!offFilter.isEmpty()) {
             for (int i = 0; i < limit; i++) {
-                limitedList.add(offsetFilter(offset).get(i));
+                limitedList.add(offFilter.get(i));
             }
             return limitedList;
         }
-        return new ArrayList<>();
+        else if(limit > offFilter.size()) {
+            return offFilter;
+        }
+        return empty;
     }
 
     // name, limit & offset filter
     public List<Tweet> nameFilter(String userName, int limit, int offset) {
         List<Tweet> tbn = new ArrayList<>();
-        if(!limitFilter(limit, offset).isEmpty()) {
-            for (Tweet tweet : limitFilter(limit, offset)) {
+        List<Tweet> limoff = limitFilter(limit, offset);
+
+        if(!limoff.isEmpty()) {
+            for (Tweet tweet : limoff) {
                 if(tweet.getUser().equals(userName)) {
                     tbn.add(tweet);
                 }
             }
             return tbn;
         }
-        return new ArrayList<>();
+        else if(!limoff.isEmpty() && userName.equals("")) {
+            return limoff;
+        }
+        return empty;
     }
 
-    // date, limit & time filter
-    public List<Tweet> timeFilter(String afterDate, int limit, int offset) throws ParseException {
+    // tea filter
+    public List<Tweet> mainFilter(String name, Date afterDate, int limit, int offset) {
         List<Tweet> resultList = new ArrayList<>();
-        Date date = sdf.parse(afterDate);
+        List<Tweet> tFilter = nameFilter(name, limit, offset);
 
-        for (int i = 0; i < limitFilter(limit, offset).size(); i++) {
-            if(limitFilter(limit, offset).get(i).getDate().after(date)) {
-                resultList.add(limitFilter(limit, offset).get(i));
+        if(!tFilter.isEmpty() && getStartDate() != null) {
+            for (Tweet tweet : tFilter) {
+                if(tweet.getDate().after(afterDate)) {
+                    resultList.add(tweet);
+                }
             }
             return resultList;
         }
-        return new ArrayList<>();
-    }
-
-    public List<Tweet> fullFilter(List<Tweet> tl, String name, int limit, int offset, String afterDate) {
-        return null;
+        return tFilter;
     }
 }
