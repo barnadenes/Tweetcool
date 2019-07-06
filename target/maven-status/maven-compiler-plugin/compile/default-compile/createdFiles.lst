@@ -1,4 +1,5 @@
 com/codecool/web/exceptions/UserNotFoundException.class
+com/codecool/web/servlet/tweetFilterServlet.class
 com/codecool/web/model/Tweet.class
 com/codecool/web/servlet/logoutServlet.class
 com/codecool/web/listener/WebappContextListener.class

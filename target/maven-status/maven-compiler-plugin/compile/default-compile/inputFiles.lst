@@ -1,6 +1,7 @@
 /home/isloth/Desktop/Web_HomeWork/Tweetcool/src/main/java/com/codecool/web/model/Tweet.java
 /home/isloth/Desktop/Web_HomeWork/Tweetcool/src/main/java/com/codecool/web/servlet/addTweetServlet.java
 /home/isloth/Desktop/Web_HomeWork/Tweetcool/src/main/java/com/codecool/web/servlet/logoutServlet.java
+/home/isloth/Desktop/Web_HomeWork/Tweetcool/src/main/java/com/codecool/web/servlet/tweetFilterServlet.java
 /home/isloth/Desktop/Web_HomeWork/Tweetcool/src/main/java/com/codecool/web/servlet/loginServlet.java
 /home/isloth/Desktop/Web_HomeWork/Tweetcool/src/main/java/com/codecool/web/service/TweetService.java
 /home/isloth/Desktop/Web_HomeWork/Tweetcool/src/main/java/com/codecool/web/listener/WebappContextListener.java

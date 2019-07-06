@@ -2,31 +2,23 @@ package com.codecool.web.service;
 
 import com.codecool.web.model.Tweet;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public final class TweetService {
     private final List<Tweet> tweets = new ArrayList<>();
-    private SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+    private List <String> userList = new ArrayList<>();
     private List<Tweet> empty = new ArrayList<>();
 
     // get all user.
     public List<String> getUsers() {
-        List<String> users = new ArrayList<>();
-        for (Tweet tweet : tweets) {
-            users.add(tweet.getUser());
-        }
-        return users;
+        return  userList;
     }
 
     // new user to list.
-    public void addUser(String user) {
-        Tweet tweet = new Tweet();
-        tweet.setUser(user);
-        tweets.add(tweet);
+    public void adduser(String name) {
+        userList.add(name);
     }
 
     //get one tweet by username.
@@ -40,24 +32,16 @@ public final class TweetService {
     }
 
     // checks if the user is registered
-    public Boolean isRegistered(String userName) {
-        for (Tweet tweet : tweets) {
-            if(tweet.getUser().equals(userName) && tweet.getTweet().equals("")) {
-                return true;
-            }
+    private Boolean isRegistered(String userName) {
+        if(userList.contains(userName)) {
+            return true;
         }
         return false;
     }
 
     // create new tweet.
-    public void addTweet(String userName, String tweet, Date date) throws NullPointerException{
+    public void addTweet(String userName, String tweet, Date date) {
         if(isRegistered(userName)) {
-            for (String user : getUsers()) {
-                getTweetByName(user).setTweet(tweet);
-                getTweetByName(user).setDate(date);
-            }
-        }
-        else if(!isRegistered(userName)) {
             Tweet newTweet = new Tweet();
             newTweet.setUser(userName);
             newTweet.setTweet(tweet);

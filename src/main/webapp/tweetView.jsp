@@ -1,3 +1,4 @@
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
@@ -30,15 +31,15 @@
                     <div id="center-options">
                       <form action="" method="">  
                         <div class="all-options">
-                            <select class="select-div">
+                            <select  name="limit" class="select-div">
                                 <option value="10">Limit:</option>
-                                <option value="20">5</option>
-                                <option value="5">2</option>
+                                <option value="5">5</option>
+                                <option value="2">2</option>
                                 <option value="1">1</option>
                             </select>
                         </div>
                         <div class="all-options">
-                            <select class="select-div">
+                            <select  name="offset" class="select-div">
                                 <option value="0">Offset:</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -46,11 +47,11 @@
                             </select>
                         </div>
                         <div class="all-options">
-                            <select class="select-div">
-                                <option value="current user">Poster:</option>
-                                <option value=""></option>
-                                <option value=""></option>
-                                <option value=""></option>
+                            <select name="poster" class="select-div">
+                                <option value="">Poster:</option>
+                                <c:forEach items="${sessionScope.users}" var="user">
+                                    <option value="user">${user}</option>
+                                </c:forEach>
                             </select>
                         </div>
                         <div class="all-options">

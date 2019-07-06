@@ -20,11 +20,7 @@ public class addTweetServlet extends HttpServlet {
         String user = String.valueOf(req.getSession().getAttribute("user"));
         Date date = new Date();
 
-        try {
-            ts.addTweet(user, tweet, date);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
+        ts.addTweet(user, tweet, date);
 
         req.getRequestDispatcher("tweetAway.jsp").include(req, resp);
     }

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/login")
 public class loginServlet extends HttpServlet {
@@ -17,6 +18,7 @@ public class loginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userName = req.getParameter("name");
         TweetService ts = (TweetService) req.getServletContext().getAttribute(TweetService.class.getName());
+        List<String> users = ts.getUsers();
 
         HttpSession oldSession = req.getSession(false);
         if(oldSession != null) {
@@ -29,10 +31,11 @@ public class loginServlet extends HttpServlet {
             newSession.setAttribute("user", userName);
         }
         else {
-            ts.addUser(userName);
+            ts.adduser(userName);
             newSession.setAttribute("user", userName);
         }
 
+        newSession.setAttribute("users", users);
         req.getRequestDispatcher("tweetAway.jsp").forward(req, resp);
     }
 }
