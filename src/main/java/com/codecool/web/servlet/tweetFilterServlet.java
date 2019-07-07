@@ -21,7 +21,6 @@ public class tweetFilterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         TweetService ts = (TweetService) req.getServletContext().getAttribute(TweetService.class.getName());
-        List<String> v = ts.getUsers();
         String name = req.getParameter("poster");
         String date = req.getParameter("time");
         int limit = Integer.parseInt(req.getParameter("limit"));

@@ -16,23 +16,9 @@ public final class TweetService {
         return  userList;
     }
 
-    public List<Tweet> getTweets() {
-        return tweets;
-    }
-
     // new user to list.
     public void adduser(String name) {
         userList.add(name);
-    }
-
-    //get one tweet by username.
-    private Tweet getTweetByName(String userName) {
-        for (Tweet tweet : tweets) {
-            if(tweet.getUser().equals(userName) && tweet.getTweet().equals("")) {
-                return tweet;
-            }
-        }
-        return null;
     }
 
     // checks if the user is registered
@@ -86,8 +72,11 @@ public final class TweetService {
         List<Tweet> offFilter = offsetFilter(offset);
 
         if(!offFilter.isEmpty()) {
-            for (int i = 0; i < limit; i++) {
+            for (int i = 0; i <= limit; i++) {
                 if(i == offFilter.size()) {
+                    return limitedList;
+                }
+                else if(i == limit){
                     return limitedList;
                 }
                 limitedList.add(offFilter.get(i));
