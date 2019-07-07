@@ -21,12 +21,13 @@ public class tweetFilterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         TweetService ts = (TweetService) req.getServletContext().getAttribute(TweetService.class.getName());
+        List<String> v = ts.getUsers();
         String name = req.getParameter("poster");
         String date = req.getParameter("time");
         int limit = Integer.parseInt(req.getParameter("limit"));
         int offset = Integer.parseInt(req.getParameter("offset"));
         Date cDate = null;
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
         try {
             cDate = df.parse(date);
@@ -35,7 +36,7 @@ public class tweetFilterServlet extends HttpServlet {
         }
 
         List<Tweet> tweets = ts.mainFilter(name, cDate, limit, offset);
-        req.setAttribute("tweets",tweets);
-        req.getRequestDispatcher("tweetView.jsp").forward(req,resp);
+        req.setAttribute("tweets", tweets);
+        req.getRequestDispatcher("tweetView.jsp").include(req,resp);
     }
 }

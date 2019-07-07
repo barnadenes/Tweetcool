@@ -1,13 +1,13 @@
-<%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="index.css">
-    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&ampdisplay=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&amp;display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
     <title>Tweet-Cool-Sloth</title>
 </head>
@@ -29,7 +29,7 @@
             <div id="center-box-middle">
                 <div id="box-background-container">
                     <div id="center-options">
-                      <form action="" method="">  
+                      <form action="filter" method="post">
                         <div class="all-options">
                             <select  name="limit" class="select-div">
                                 <option value="10">Limit:</option>
@@ -48,9 +48,9 @@
                         </div>
                         <div class="all-options">
                             <select name="poster" class="select-div">
-                                <option value="">Poster:</option>
+                                <option value="user">Poster:</option>
                                 <c:forEach items="${sessionScope.users}" var="user">
-                                    <option value="user">${user}</option>
+                                    <option value="${user}">${user}</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -63,19 +63,15 @@
                     </div>
                 </div>
                 <div class="tweet-list-container">
-                    <div class="inner-tl-container">
-                        <p>${sessionScope.user}</p>
-                        <p>Date</p>
-                    </div>
-                    <p class="p-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi quod corporis ducimus nemo maiores? 
-                                   Consequatur nostrum facilis repellat explicabo voluptatem pariatur quia ipsum tempore ea
-                    </p>
-                    <div class="inner-tl-container">
-                            <p>${sessionScope.user}</p>
-                            <p>Date</p>
-                    </div>
-                        <p class="p-text">Lorem ipsum 
-                        </p>
+                    <form action="filter" method="post">
+                        <c:forEach var="tweet" items="${tweets}">
+                            <div class="inner-tl-container">
+                                <p><c:out value="${tweet.user}"/></p>
+                                <p><c:out value="${tweet.date}"/></p>
+                            </div>
+                            <p class="p-text"><c:out value="${tweet.tweet}"/></p>
+                        </c:forEach>
+                    </form>
                 </div>
             </div>
         </div>

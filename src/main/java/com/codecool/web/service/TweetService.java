@@ -16,6 +16,10 @@ public final class TweetService {
         return  userList;
     }
 
+    public List<Tweet> getTweets() {
+        return tweets;
+    }
+
     // new user to list.
     public void adduser(String name) {
         userList.add(name);
@@ -83,12 +87,11 @@ public final class TweetService {
 
         if(!offFilter.isEmpty()) {
             for (int i = 0; i < limit; i++) {
+                if(i == offFilter.size()) {
+                    return limitedList;
+                }
                 limitedList.add(offFilter.get(i));
             }
-            return limitedList;
-        }
-        else if(limit > offFilter.size()) {
-            return offFilter;
         }
         return empty;
     }
@@ -103,11 +106,11 @@ public final class TweetService {
                 if(tweet.getUser().equals(userName)) {
                     tbn.add(tweet);
                 }
+                else if(userName.equals("user")) {
+                    return limoff;
+                }
             }
             return tbn;
-        }
-        else if(!limoff.isEmpty() && userName.equals("")) {
-            return limoff;
         }
         return empty;
     }
@@ -119,12 +122,15 @@ public final class TweetService {
 
         if(!tFilter.isEmpty() && getStartDate() != null) {
             for (Tweet tweet : tFilter) {
-                if(tweet.getDate().after(afterDate)) {
+                if(afterDate == null) {
+                    return tFilter;
+                }
+                else if(tweet.getDate().after(afterDate)) {
                     resultList.add(tweet);
                 }
             }
             return resultList;
         }
-        return tFilter;
+        return empty;
     }
 }
