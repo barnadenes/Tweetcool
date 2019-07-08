@@ -1,7 +1,0 @@
-com/codecool/web/servlet/tweetFilterServlet.class
-com/codecool/web/model/Tweet.class
-com/codecool/web/servlet/logoutServlet.class
-com/codecool/web/listener/WebappContextListener.class
-com/codecool/web/servlet/loginServlet.class
-com/codecool/web/service/TweetService.class
-com/codecool/web/servlet/addTweetServlet.class
