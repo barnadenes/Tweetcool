@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 public final class TweetService {
+    private static TweetService ts = new TweetService();
     private final List<Tweet> tweets = new ArrayList<>();
     private List <String> userList = new ArrayList<>();
     private List<Tweet> empty = new ArrayList<>();
@@ -40,6 +41,14 @@ public final class TweetService {
         }
     }
 
+    public List<Tweet> getTweets() {
+        return tweets;
+    }
+
+    public static TweetService getInstance() {
+        return ts;
+    }
+
     // get earliest time.
     public Date getStartDate() {
         Date old;
@@ -51,8 +60,8 @@ public final class TweetService {
         return null;
     }
 
-    // offset filter
-    private List<Tweet> offsetFilter(int offset) {
+    // offset filter (public for test sake)
+    public List<Tweet> offsetFilter(int offset) {
         List<Tweet> offsetList = new ArrayList<>();
         if(!tweets.isEmpty()) {
             for (int i = offset; i < tweets.size(); i++) {
